@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model ProjectListViewModel
+
+@foreach (var x in Model.Projects)
+{
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h4>
+                Program Name: @x.Program
+                <span class="badge badge-pill badge-primary" style="float:right">
+                    <p>Impact: @x.Impact people served</p>
+                </span>
+            </h4>
+            <p>Program Type: @x.Type</p>
+            <p>Completion Date: @x.CompletionDate</p>
+            <div class="card-text p-1">
+                <p>Phase: @x.Phase</p>
+            </div>
+        </div>
+    </div>
+}
+
+<div page-model="@Model.PagingInfo" page-action="Index" 
+     page-classes-enabled="true" 
+     page-class="btn" 
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" 
+     class="btn-group pull-right m-1"></div>
