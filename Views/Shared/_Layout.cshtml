@@ -1,5 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@*This "_Layout" can be called anything as long as you reference it to the new name everywhere that is appropriate*@
+@*Make sure to reference it (using whatever name you gave it in the "_ViewStart" file *@
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,22 +11,22 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
 
+<body>
     <div class="bg-dark text-white p-2">
         <span class="navbar-brand ml-2">WATER CHARITY</span>
     </div>
     
     <div class="row m-1 p-1">
-        <div id="blah" class="col-4">
+        <div id="blah" class="col-3">
             <h1>Give the gift of water</h1>
+            @* next line will go to the Componenets folder and find the "NavigationMenu" Class *@
+            <vc:navigation-menu />
         </div>    
-        <div class="col-8">
+        <div class="col-9">
             @RenderBody()
         </div>
     </div>
-
-
-
 </body>
+
 </html>

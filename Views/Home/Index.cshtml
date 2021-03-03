@@ -4,28 +4,44 @@
 
 @model ProjectListViewModel
 
+@*Go to the ProjectsListViewModel class and only pull out the "Projects" portion*@
+@*Save it as x and send it to the partial view: "ProjectSummary" *@
 @foreach (var x in Model.Projects)
 {
-    <div class="card card-outline-primary m-1 p-1">
-        <div class="bg-faded p-1">
-            <h4>
-                Program Name: @x.Program
-                <span class="badge badge-pill badge-primary" style="float:right">
-                    <p>Impact: @x.Impact people served</p>
-                </span>
-            </h4>
-            <p>Program Type: @x.Type</p>
-            <p>Completion Date: @x.CompletionDate</p>
-            <div class="card-text p-1">
-                <p>Phase: @x.Phase</p>
-            </div>
-        </div>
-    </div>
+    <partial name="ProjectSummary" model="x" />
 }
 
-<div page-model="@Model.PagingInfo" page-action="Index" 
+@*
+Working with forms
+    For Tag Helpers, make sure to add and update the "_ViewImports" file
+
+"asp-for" gives the label and input the name, id, type and all that mumbo jumbo
+"asp-action" refers to the action we are going to in the Controller
+
+
+<form asp-action="Index" method="post">
+    <label>What is on Question 1?</label>
+    <input />
+
+    <button type="submit">Submit Question</button>
+</form>
+*@
+
+@*
+    To bring in bootstrap:
+    1. create wwwroot folder
+    2. create lib folder
+    3. create bootstrap folder
+    4. put boostrap file within there
+    5. make sure to reference bootstrap file within header of shared layout
+*@
+
+@*All of this stuff is used to set things in the "PageLinkTagHelper" class*@
+<div page-model="@Model.PagingInfo" 
+     page-action="Index" 
      page-classes-enabled="true" 
      page-class="btn" 
      page-class-normal="btn-outline-dark"
      page-class-selected="btn-primary" 
+     page-url-category="@Model.Type"
      class="btn-group pull-right m-1"></div>

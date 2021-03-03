@@ -1,0 +1,18 @@
+﻿@model Project
+
+@*Work through each instance of project and get the following information out: then print it one at a time*@
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-faded p-1">
+        <h4>
+            Program Name: @Model.Program
+            <span class="badge badge-pill badge-primary" style="float:right">
+                <p>Impact: @Model.Impact people served</p>
+            </span>
+        </h4>
+        <p>Program Type: @Model.Type</p>
+        <p>Completion Date: @Model.CompletionDate</p>
+        <div class="card-teModelt p-1">
+            <p>Phase: @Model.Phase</p>
+        </div>
+    </div>
+</div>
