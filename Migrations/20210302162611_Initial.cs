@@ -11,7 +11,7 @@ namespace WaterProject.Migrations
                 name: "Projects",
                 columns: table => new
                 {
-                    ProjectID = table.Column<int>(nullable: false)
+                    ProjectId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Type = table.Column<string>(nullable: true),
                     Program = table.Column<string>(nullable: true),
@@ -22,7 +22,7 @@ namespace WaterProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.ProjectID);
+                    table.PrimaryKey("PK_Projects", x => x.ProjectId);
                 });
         }
 

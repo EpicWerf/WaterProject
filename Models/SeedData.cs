@@ -12,16 +12,20 @@ namespace WaterProject.Models
     {
         public static void EnsurePopulated (IApplicationBuilder application)
         {
+            //grab an instance of our CharitDbContext using a scoped version of it
             CharityDbContext context = application.ApplicationServices.
                 CreateScope().ServiceProvider.GetRequiredService<CharityDbContext>();
 
+            //if there are any pending migrations, migrate!
             if (context.Database.GetPendingMigrations().Any())
             {
                 context.Database.Migrate();
             }
 
+            //if there is nothing in the database yet...
             if(!context.Projects.Any())
             {
+                //then add all this stuff:
                 context.Projects.AddRange(
                     new Project
                     {
@@ -76,6 +80,7 @@ namespace WaterProject.Models
 
                 );
 
+                //go write this to the database
                 context.SaveChanges();
             }
         }

@@ -31,7 +31,7 @@ namespace WaterProject.Controllers
             {
                 Projects = _repository.Projects
                         .Where(p => category == null || p.Type == category)
-                        .OrderBy(p => p.ProjectID)
+                        .OrderBy(p => p.ProjectId)
                         .Skip((page - 1) * PageSize)
                         .Take(PageSize)
                     ,

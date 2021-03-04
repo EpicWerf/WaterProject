@@ -28,12 +28,26 @@ namespace WaterProject
             //this line tells us that we are going to use a controller and views in this project
             services.AddControllersWithViews();
 
+            //this line actually calls that DbContext class that we made
+            //Otherwise that class would just sit there, not being called
+            //use the connection string to do that
             services.AddDbContext<CharityDbContext>(options =>
             {
                 options.UseSqlite(Configuration["ConnectionStrings:WaterCharityConnection"]);
             });
 
+            //each session will get it's own tailored repository
             services.AddScoped<ICharityRepository, EFCharityRepository>();
+
+            //######################################################################################
+            //allows you to use razor pages
+            services.AddRazorPages();
+
+            //######################################################################################
+            //setting up session storage
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +65,10 @@ namespace WaterProject
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //######################################################################################
+            //allows you to use session storage
+            app.UseSession();
 
             app.UseRouting();
 
@@ -85,8 +103,15 @@ namespace WaterProject
 
                 //if what comes in doesn't match anything, use the default route setup (Home -> Index)
                 endpoints.MapDefaultControllerRoute();
+
+                //######################################################################################
+                //allows endpoints to use razor pages (add routing for razor pages)
+                endpoints.MapRazorPages();
+
             });
 
+            //goes to the SeedData class, calls the EnsurePopulated method
+            //decide if there is anything in the database and make decisions based on that
             SeedData.EnsurePopulated(app);
         }
     }

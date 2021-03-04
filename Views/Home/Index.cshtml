@@ -11,30 +11,6 @@
     <partial name="ProjectSummary" model="x" />
 }
 
-@*
-Working with forms
-    For Tag Helpers, make sure to add and update the "_ViewImports" file
-
-"asp-for" gives the label and input the name, id, type and all that mumbo jumbo
-"asp-action" refers to the action we are going to in the Controller
-
-
-<form asp-action="Index" method="post">
-    <label>What is on Question 1?</label>
-    <input />
-
-    <button type="submit">Submit Question</button>
-</form>
-*@
-
-@*
-    To bring in bootstrap:
-    1. create wwwroot folder
-    2. create lib folder
-    3. create bootstrap folder
-    4. put boostrap file within there
-    5. make sure to reference bootstrap file within header of shared layout
-*@
 
 @*All of this stuff is used to set things in the "PageLinkTagHelper" class*@
 <div page-model="@Model.PagingInfo" 

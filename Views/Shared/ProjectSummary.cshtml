@@ -15,4 +15,16 @@
             <p>Phase: @Model.Phase</p>
         </div>
     </div>
+
+    <form id="@Model.ProjectId" asp-page="/Donate" method="post">
+        <input type="hidden" asp-for="ProjectId" />
+        @*<input type="hidden" asp-for="ProjectId" />*@
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <span class="cart-text p-1">
+            @Model.Program
+            <button type="submit" class="btn-success btn-sm pull-right" style="float:right">
+                Donate 
+            </button>
+        </span>
+    </form>
 </div>

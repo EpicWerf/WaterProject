@@ -20,7 +20,7 @@ namespace WaterProject.Migrations
 
             modelBuilder.Entity("WaterProject.Models.Project", b =>
                 {
-                    b.Property<int>("ProjectID")
+                    b.Property<int>("ProjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -42,7 +42,7 @@ namespace WaterProject.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ProjectID");
+                    b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
                 });
