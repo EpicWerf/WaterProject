@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WaterProject.Infrastructure;
 using WaterProject.Models;
-//######################################################################################
 
 namespace WaterProject.Pages
 {
@@ -16,9 +15,10 @@ namespace WaterProject.Pages
         private ICharityRepository repository;
 
         //constructor
-        public DonateModel (ICharityRepository repo)
+        public DonateModel (ICharityRepository repo, Cart cartService)
         {
             repository = repo;
+            Cart = cartService;
         }
 
         //properties
@@ -29,28 +29,26 @@ namespace WaterProject.Pages
         //on a get - set the returnURl equal to whatever was passed in
         public void OnGet(string returnUrl)
         {
-            //if nothing was passed in, set it equal to "/"
+            //Set the ReturnUrl = returnUrl or / if nothing was passed in
             ReturnUrl = returnUrl ?? "/";
-            //if nothing was in the cart, get a new cart
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
         //
         public IActionResult OnPost(long projectId, string returnUrl)
         {
             //look at first or default
-            Project project = repository.Projects.FirstOrDefault(p => p.ProjectId == projectId);
-
+            Project proj = repository.Projects
+                .FirstOrDefault(p => p.ProjectId == projectId);
             //get the cart or add a new cart
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-
-            //add an item to the cart of qty 1
-            Cart.AddItem(project, 1);
-
-            //convert the cart into Json
-            HttpContext.Session.SetJson("cart", Cart);
-
+            Cart.AddItem(proj, 1);
             //send to a new page using the returnUrl
+            return RedirectToPage(new { returnUrl = returnUrl });
+        }
+        //handler to remove an item from the cart
+        public IActionResult OnPostRemove(long projectId, string returnUrl)
+        {
+            Cart.RemoveLine(Cart.Lines.First(cl =>
+                cl.Project.ProjectId == projectId).Project);
             return RedirectToPage(new { returnUrl = returnUrl });
         }
     }

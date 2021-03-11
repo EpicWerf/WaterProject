@@ -10,19 +10,30 @@
     <title>@ViewData["Title"] - WaterProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 
 <body>
+
+    @*Cutesie Tootsie Cart Summary*@
     <div class="bg-dark text-white p-2">
-        <span class="navbar-brand ml-2">WATER CHARITY</span>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand">WATER CHARITY</div>
+                <div class="col-6 text-right">
+                    <vc:cart-summary />
+                </div>
+            </div>
+        </div>
     </div>
-    
+
+
     <div class="row m-1 p-1">
         <div id="blah" class="col-3">
             <h1>Give the gift of water</h1>
             @* next line will go to the Componenets folder and find the "NavigationMenu" Class *@
             <vc:navigation-menu />
-        </div>    
+        </div>
         <div class="col-9">
             @RenderBody()
         </div>

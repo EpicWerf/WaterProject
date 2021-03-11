@@ -18,7 +18,6 @@
 
     <form id="@Model.ProjectId" asp-page="/Donate" method="post">
         <input type="hidden" asp-for="ProjectId" />
-        @*<input type="hidden" asp-for="ProjectId" />*@
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
         <span class="cart-text p-1">
             @Model.Program

@@ -46,13 +46,13 @@ namespace WaterProject.Infrastructure
             IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
 
             TagBuilder result = new TagBuilder("div");
-
+ 
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 //Building tag
                 TagBuilder tag = new TagBuilder("a");
 
-                PageUrlValues["page"] = i;
+                PageUrlValues["pageNum"] = i;
                 tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
 
                 //if there is an attribute called PageClassesEnabled set to "true", do the following

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//######################################################################################
 namespace WaterProject.Models
 {
     public class Cart
@@ -10,7 +9,7 @@ namespace WaterProject.Models
         //the Lines object is a list of CartLines
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
-        public void AddItem(Project proj, int qty)
+        public virtual void AddItem(Project proj, int qty)
         {
             //the next block will check to see if you have the selected item in your cart
             CartLine line = Lines
@@ -34,11 +33,11 @@ namespace WaterProject.Models
         }
 
         //remove ONE item from the cart
-        public void RemoveLine(Project proj) =>
+        public virtual void RemoveLine(Project proj) =>
             Lines.RemoveAll(x => x.Project.ProjectId == proj.ProjectId);
 
         //remove ALL items from cart
-        public void Clear() => Lines.Clear();
+        public virtual void Clear() => Lines.Clear();
 
         //Get total price for the items in the cart
         //price is hard coded here; for the assignment you will do e.Price or something like that
